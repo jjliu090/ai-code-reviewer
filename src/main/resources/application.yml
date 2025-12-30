@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: CodeReviewAI
+
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      embedding:
+        model: nomic-embed-text
+
+    vectorstore:
+      milvus:
+        client:
+          connect-timeout-ms: 10000
+          host: localhost
+          port: 19530
+        database-name: default
+        collection-name: code_embeddings
+        index-type: HNSW
+
+        index-parameters:
+          M: 16
+          efConstruction: 200
+
+        search-parameters:
+          ef: 64
+
+        metric-type: COSINE
+        embedding-dimension: 768
+        initialize-schema: true

@@ -1,43 +1,37 @@
-# Maven
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# IDE
-.idea/
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
 *.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
 .vscode/
-*.swp
-*.swo
-.DS_Store
-
-# Logs
-*.log
-logs/
-
-# 环境配置
-.env
-application-local.yml
-application-local.properties
-
-# 编译文件
-*.class
-
-# 包文件
-*.jar
-*.war
-*.ear
-!gradle-wrapper.jar
-
-# 临时文件
-*.tmp
-*.bak
-*.swp
-*~
-
-# 系统文件
-.DS_Store
-Thumbs.db
