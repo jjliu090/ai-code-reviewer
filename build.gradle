@@ -37,6 +37,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.mockito:mockito-core'
+	testImplementation 'org.mockito:mockito-junit-jupiter'
 }
 
 dependencyManagement {
@@ -45,6 +47,46 @@ dependencyManagement {
 	}
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
+
+	// 排除集成测试
+	exclude '**/*IntegrationTest.class'
+	exclude '**/*E2ETest.class'
+
+	// 显示测试结果
+	testLogging {
+		events "passed", "skipped", "failed"
+		showStandardStreams = false
+		exceptionFormat = 'full'
+	}
+
+	// 测试失败时继续(可选)
+	ignoreFailures = false
 }
+
+// JaCoCo 代码覆盖率配置
+jacoco {
+	toolVersion = "0.8.11"
+}
+
+jacocoTestReport {
+	dependsOn test
+
+	reports {
+		xml.required = true
+		html.required = true
+	}
+
+	afterEvaluate {
+		classDirectories.setFrom(files(classDirectories.files.collect {
+			fileTree(dir: it, exclude: [
+					'**/config/**',
+					'**/entity/**',
+					'**/*Application.class'
+			])
+		}))
+	}
+}
+
+test.finalizedBy jacocoTestReport
