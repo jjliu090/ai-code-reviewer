@@ -17,6 +17,7 @@ public class WebhookController {
             @RequestBody String payload
     ) {
         log.info("收到webhook：{}", event);
+        log.info("收到payload: {}", payload);
         if ("ping".equals(event)) {
             return ApiResponse.success(
                     Map.of("event", "ping", "message", "pong")
