@@ -15,12 +15,11 @@ public class VectorService {
 
     private final VectorStore vectorStore;
 
-    public String storeToVectorDB(String code) {
+    public void storeToVectorDB(String code) {
         log.debug("传入参数: {}", code);
 
         Document document = new Document(code);
 
         vectorStore.add(List.of(document));
-        return "存储成功";
     }
 }
