@@ -26,16 +26,16 @@
 | ★★★★   | 自动生成优雅 Commit Message       | 规划中        | 基于 git diff 智能生成 Conventional Commit 风格                      |
 | ★★★★   | 代码相似度检测 & 最佳实践推荐     | 初步实现      | Milvus 向量检索相似代码，提示可复用片段                              |
 | ★★★    | 配置文件关键参数提取与分析        | 规划中        | 支持常见格式（application.yml、pom.xml 等）                          |
-| ★★     | 用户管理 & GitHub 账号绑定        | 暂缓          | MVP 阶段先专注核心审查能力                                           |
+| ★★     | 用户管理 & GitHub 账号绑定        | 暂缓          | 先专注核心审查能力                                           |
 
 ## 技术选型与理由
 
 | 技术栈               | 选择理由                                                                 | 替代方案考虑过          |
 |----------------------|--------------------------------------------------------------------------|--------------------------|
-| Spring Boot 3 + Spring AI | 生态完整、Java 生态最友好 AI 集成框架，快速原型                         | FastAPI / NestJS         |
+| Spring Boot 3 + Spring AI | 生态完整、Java 生态最友好 AI 集成框架，快速原型                         | FastAPI        |
 | DeepSeek (对话/生成) | 性价比极高（远低于 GPT-4o），API 完全兼容 OpenAI                         | Claude / GPT-4o-mini     |
-| Ollama (Embedding)   | Spring AI 原生不支持 DeepSeek embedding，只能本地跑 Ollama              | sentence-transformers    |
-| Milvus 2.6           | 开源分布式向量数据库之王，支持高并发、PQ 量化压缩、易扩展               | Chroma / Weaviate / PGVector |
+| Ollama (Embedding)   | Spring AI 原生不支持 DeepSeek embedding，只能本地跑 Ollama              | -    |
+| Milvus 2.6           | 开源分布式向量数据库之王，支持高并发、PQ 量化压缩、易扩展               | - |
 | Redis                | 缓存审查结果 & Prompt，显著降低重复调用大模型成本                       | -                        |
 | JavaParser           | 语法树级代码切片，比正则更准确，支持复杂 Java 代码                      | tree-sitter              |
 | smee.io              | 本地开发时完美模拟 GitHub Webhook                                       | ngrok                    |
@@ -47,7 +47,7 @@
 
 ## 开发过程与进度（时间线式）
 
-2025.10 – 2026.03（持续迭代中）
+2025.09 – 2026.03（持续迭代中）
 
 - **阶段1：基础设施打通**  
   创建 GitHub App → 配置 Webhook → smee.io 本地转发 → Spring Boot 接收成功
